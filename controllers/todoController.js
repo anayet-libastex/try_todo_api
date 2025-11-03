@@ -19,7 +19,7 @@ const getAllData = async (req, res) => {
 
 const getSingleData = async (req, res) => {
   try {
-    const data = await Todo.find({_id: req.params.id});
+    const data = await Todo.find({ _id: req.params.id });
     res.status(200).json({
       data,
     });
@@ -34,10 +34,10 @@ const getSingleData = async (req, res) => {
 
 const postMultipleData = async (req, res) => {
   try {
-     await Todo.insertMany(req.body);
+    await Todo.insertMany(req.body);
     res.status(200).json({
       success: true,
-      message: "Todos Were Inserted Successfully!"
+      message: "Todos Were Inserted Successfully!",
     });
   } catch (err) {
     console.log(err);
@@ -50,10 +50,10 @@ const postMultipleData = async (req, res) => {
 
 const postSingleData = async (req, res) => {
   try {
-     await Todo.insertOne(req.body);
+    await Todo.insertOne(req.body);
     res.status(200).json({
       success: true,
-      message: "Todos Were Inserted Successfully!"
+      message: "Todos Were Inserted Successfully!",
     });
   } catch (err) {
     console.log(err);
@@ -66,14 +66,17 @@ const postSingleData = async (req, res) => {
 
 const putMultipleData = async (req, res) => {
   try {
-     await Todo.updateMany({status: "active"},{
+    await Todo.updateMany(
+      { status: "active" },
+      {
         $set: {
-            status: "inactive"
-        }
-     });
+          status: "inactive",
+        },
+      }
+    );
     res.status(200).json({
       success: true,
-      message: "Todos Were Updated Successfully!"
+      message: "Todos Were Updated Successfully!",
     });
   } catch (err) {
     console.log(err);
@@ -86,14 +89,17 @@ const putMultipleData = async (req, res) => {
 
 const putSingleData = async (req, res) => {
   try {
-     await Todo.updateOne({_id: req.params.id},{
+    await Todo.updateOne(
+      { _id: req.params.id },
+      {
         $set: {
-            status: "active"
-        }
-     });
+          status: "active",
+        },
+      }
+    );
     res.status(200).json({
       success: true,
-      message: "Todo was Updated Successfully!"
+      message: "Todo was Updated Successfully!",
     });
   } catch (err) {
     console.log(err);
@@ -106,10 +112,10 @@ const putSingleData = async (req, res) => {
 
 const deleteData = async (req, res) => {
   try {
-     await Todo.deleteOne({_id: req.params.id});
+    await Todo.deleteOne({ _id: req.params.id });
     res.status(200).json({
       success: true,
-      message: "Todo was Deleted Successfully!"
+      message: "Todo was Deleted Successfully!",
     });
   } catch (err) {
     console.log(err);
@@ -120,6 +126,12 @@ const deleteData = async (req, res) => {
   }
 };
 
-
-
-export {getAllData};
+export {
+  deleteData,
+  getAllData,
+  getSingleData,
+  postMultipleData,
+  postSingleData,
+  putMultipleData,
+  putSingleData,
+};
